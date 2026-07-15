@@ -1,0 +1,163 @@
+{
+  "metadados": {
+    "nome_do_teste": "Teste cashback - Parceiro A",
+    "descricao": "Teste A/B de variantes de cashback para o parceiro Parceiro A, comparando Grupo 1, Grupo 2, Grupo 3.",
+    "parceiro": "Parceiro A",
+    "arquivo_origem": "dataset_01_parceiroA.csv",
+    "periodo_inicio": "2011-01-01",
+    "periodo_fim": "2011-04-02",
+    "dias_totais": 92,
+    "grupos": [
+      "Grupo 1",
+      "Grupo 2",
+      "Grupo 3"
+    ],
+    "gerado_em": "2026-07-15 20:19:54"
+  },
+  "metricas_por_grupo": {
+    "Grupo 1": {
+      "dias_observados": 92,
+      "compradores_total": 9633,
+      "compradores_media_dia": 104.71,
+      "comissao_total": 638135.0,
+      "cashback_total": 233424.0,
+      "vendas_totais": 5605173.0,
+      "lucro_total": 404711.0,
+      "lucro_media_dia": 4399.03,
+      "roi": 2.7338,
+      "roi_media_dia": 2.996,
+      "ticket_medio": 581.87,
+      "cashback_rate_sobre_vendas": 4.16,
+      "take_rate": 11.38
+    },
+    "Grupo 2": {
+      "dias_observados": 92,
+      "compradores_total": 10814,
+      "compradores_media_dia": 117.54,
+      "comissao_total": 728178.0,
+      "cashback_total": 370659.0,
+      "vendas_totais": 6423096.0,
+      "lucro_total": 357519.0,
+      "lucro_media_dia": 3886.08,
+      "roi": 1.9645,
+      "roi_media_dia": 2.0207,
+      "ticket_medio": 593.96,
+      "cashback_rate_sobre_vendas": 5.77,
+      "take_rate": 11.34
+    },
+    "Grupo 3": {
+      "dias_observados": 92,
+      "compradores_total": 11410,
+      "compradores_media_dia": 124.02,
+      "comissao_total": 767887.0,
+      "cashback_total": 503600.0,
+      "vendas_totais": 6785856.0,
+      "lucro_total": 264287.0,
+      "lucro_media_dia": 2872.68,
+      "roi": 1.5248,
+      "roi_media_dia": 1.7768,
+      "ticket_medio": 594.73,
+      "cashback_rate_sobre_vendas": 7.42,
+      "take_rate": 11.32
+    }
+  },
+  "estatistica": {
+    "metrica_testada": "lucro",
+    "unidade_de_analise": "dia (métrica testada: Lucro líquido (comissão − cashback))",
+    "normalidade_por_grupo": {
+      "Grupo 1": {
+        "applicable": true,
+        "p_value": 0.0,
+        "normal": false
+      },
+      "Grupo 2": {
+        "applicable": true,
+        "p_value": 0.0,
+        "normal": false
+      },
+      "Grupo 3": {
+        "applicable": true,
+        "p_value": 0.0,
+        "normal": false
+      }
+    },
+    "homogeneidade_variancia_levene": null,
+    "metodo_escolhido_motivo": "não-paramétrico (pelo menos um grupo não passou no teste de normalidade de Shapiro-Wilk, ou variâncias muito diferentes entre grupos, ou n pequeno demais)",
+    "teste_global": {
+      "method": "kruskal_wallis",
+      "statistic": 27.1563,
+      "p_value": 1e-06
+    },
+    "comparacoes_par_a_par": {
+      "Grupo 1 vs Grupo 2": {
+        "test": "mann_whitney_u",
+        "p_value_raw": 0.144972,
+        "p_value_bonferroni": 0.434916,
+        "significant": false,
+        "effect_size": -0.1245,
+        "media_diaria_por_grupo": {
+          "Grupo 1": 4399.0326,
+          "Grupo 2": 3886.0761
+        }
+      },
+      "Grupo 1 vs Grupo 3": {
+        "test": "mann_whitney_u",
+        "p_value_raw": 1e-06,
+        "p_value_bonferroni": 4e-06,
+        "significant": true,
+        "effect_size": -0.4121,
+        "media_diaria_por_grupo": {
+          "Grupo 1": 4399.0326,
+          "Grupo 3": 2872.6848
+        }
+      },
+      "Grupo 2 vs Grupo 3": {
+        "test": "mann_whitney_u",
+        "p_value_raw": 9.1e-05,
+        "p_value_bonferroni": 0.000273,
+        "significant": true,
+        "effect_size": -0.3341,
+        "media_diaria_por_grupo": {
+          "Grupo 2": 3886.0761,
+          "Grupo 3": 2872.6848
+        }
+      }
+    },
+    "alpha": 0.05
+  },
+  "decisao": {
+    "metrica_alvo": "lucro",
+    "metrica_alvo_label": "Lucro líquido (comissão − cashback)",
+    "justificativa_metrica": "Lucro líquido é a métrica padrão porque representa o impacto financeiro direto para o Méliuz — quanto sobra no caixa depois de pagar o cashback ao usuário. É a resposta mais direta a 'vale escalar?' quando o objetivo do teste não foi especificado de outra forma.",
+    "vencedor_de_negocio": "Grupo 1",
+    "efeito_pratico_pct_vs_segundo_colocado": 13.2,
+    "efeito_pratico_absoluto_vs_segundo_colocado": 512.95,
+    "significativo_vs_todos_os_grupos": false,
+    "relevante_na_pratica": true,
+    "dimensoes": {
+      "confianca": "Baixa",
+      "impacto_financeiro": "Alto",
+      "risco": "Alto"
+    },
+    "recomendacao": "NENHUMA_VARIANTE_SIGNIFICATIVA",
+    "confianca": "Baixa",
+    "resumo": "As variantes não apresentam diferença estatisticamente significativa em Lucro líquido (comissão − cashback) (alpha=0.05), mesmo com amostra considerada suficiente. Escalar qualquer uma não é sustentado pelos dados — considere manter a configuração atual ou testar uma variação mais ousada.",
+    "avisos_qualidade_dados_relevantes": 0
+  },
+  "insights_automaticos": [
+    "'Grupo 3' tem o maior volume de compradores, mas 'Grupo 1' tem o maior lucro líquido — o grupo que mais vende não é o mais rentável. O custo de cashback parece estar corroendo parte do ganho de volume em 'Grupo 3'.",
+    "'Grupo 3' distribui 7.42% do GMV em cashback, contra 4.16% em 'Grupo 1' — uma diferença de 3.3 pontos percentuais no incentivo entre as variantes."
+  ],
+  "avisos_qualidade_dados": [
+    {
+      "severity": "info",
+      "code": "outlier_days_detected",
+      "message": "Dias com lucro atípico (|z| > 3.0) detectados por grupo (Grupo 1: 2, Grupo 2: 1, Grupo 3: 3). Não foram removidos automaticamente — podem ser picos legítimos (ex: promoção pontual)."
+    }
+  ],
+  "registro_planilha": {
+    "backend": "csv",
+    "location": "output/tracking_sheet.csv",
+    "error": null
+  }
+}

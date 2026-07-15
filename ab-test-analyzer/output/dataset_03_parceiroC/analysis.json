@@ -1,0 +1,117 @@
+{
+  "metadados": {
+    "nome_do_teste": "Teste cashback - Parceiro C",
+    "descricao": "Teste A/B de variantes de cashback para o parceiro Parceiro C, comparando Grupo 1, Grupo 2.",
+    "parceiro": "Parceiro C",
+    "arquivo_origem": "dataset_03_parceiroC.csv",
+    "periodo_inicio": "2011-07-01",
+    "periodo_fim": "2011-08-14",
+    "dias_totais": 45,
+    "grupos": [
+      "Grupo 1",
+      "Grupo 2"
+    ],
+    "gerado_em": "2026-07-15 20:19:57"
+  },
+  "metricas_por_grupo": {
+    "Grupo 1": {
+      "dias_observados": 45,
+      "compradores_total": 4549,
+      "compradores_media_dia": 101.09,
+      "comissao_total": 121693.0,
+      "cashback_total": 86924.0,
+      "vendas_totais": 1738460.0,
+      "lucro_total": 34769.0,
+      "lucro_media_dia": 772.64,
+      "roi": 1.4,
+      "roi_media_dia": 1.4,
+      "ticket_medio": 382.16,
+      "cashback_rate_sobre_vendas": 5.0,
+      "take_rate": 7.0
+    },
+    "Grupo 2": {
+      "dias_observados": 45,
+      "compradores_total": 4522,
+      "compradores_media_dia": 100.49,
+      "comissao_total": 117967.0,
+      "cashback_total": 117967.0,
+      "vendas_totais": 1685235.0,
+      "lucro_total": 0.0,
+      "lucro_media_dia": 0.0,
+      "roi": 1.0,
+      "roi_media_dia": 1.0,
+      "ticket_medio": 372.67,
+      "cashback_rate_sobre_vendas": 7.0,
+      "take_rate": 7.0
+    }
+  },
+  "estatistica": {
+    "metrica_testada": "lucro",
+    "unidade_de_analise": "dia (métrica testada: Lucro líquido (comissão − cashback))",
+    "normalidade_por_grupo": {
+      "Grupo 1": {
+        "applicable": true,
+        "p_value": 0.0481,
+        "normal": false
+      },
+      "Grupo 2": {
+        "applicable": false,
+        "p_value": null,
+        "normal": null
+      }
+    },
+    "homogeneidade_variancia_levene": null,
+    "metodo_escolhido_motivo": "não-paramétrico (pelo menos um grupo não passou no teste de normalidade de Shapiro-Wilk, ou variâncias muito diferentes entre grupos, ou n pequeno demais)",
+    "teste_global": {
+      "method": "mann_whitney_u",
+      "statistic": 2025.0,
+      "p_value": 0.0
+    },
+    "comparacoes_par_a_par": {
+      "Grupo 1 vs Grupo 2": {
+        "test": "mann_whitney_u",
+        "p_value_raw": 0.0,
+        "p_value_bonferroni": 0.0,
+        "significant": true,
+        "effect_size": -1.0,
+        "media_diaria_por_grupo": {
+          "Grupo 1": 772.6444,
+          "Grupo 2": 0.0
+        }
+      }
+    },
+    "alpha": 0.05
+  },
+  "decisao": {
+    "metrica_alvo": "lucro",
+    "metrica_alvo_label": "Lucro líquido (comissão − cashback)",
+    "justificativa_metrica": "Lucro líquido é a métrica padrão porque representa o impacto financeiro direto para o Méliuz — quanto sobra no caixa depois de pagar o cashback ao usuário. É a resposta mais direta a 'vale escalar?' quando o objetivo do teste não foi especificado de outra forma.",
+    "vencedor_de_negocio": "Grupo 1",
+    "efeito_pratico_pct_vs_segundo_colocado": null,
+    "efeito_pratico_absoluto_vs_segundo_colocado": 772.64,
+    "significativo_vs_todos_os_grupos": true,
+    "relevante_na_pratica": true,
+    "dimensoes": {
+      "confianca": "Alta",
+      "impacto_financeiro": "Alto",
+      "risco": "Baixo"
+    },
+    "recomendacao": "ESCALAR_GRUPO_1",
+    "confianca": "Alta",
+    "resumo": "'Grupo 1' deve ser escalado para 100% do tráfego, otimizando Lucro líquido (comissão − cashback): 2º colocado empata comissão=cashback (métrica zero); 'Grupo 1' é a única variante positiva, diferença estatisticamente significativa contra todas as demais variantes (alpha=0.05), impacto financeiro alto e risco baixo.",
+    "avisos_qualidade_dados_relevantes": 0
+  },
+  "insights_automaticos": [],
+  "avisos_qualidade_dados": [
+    {
+      "severity": "info",
+      "code": "zero_variance_profit_group",
+      "message": "Grupo(s) ['Grupo 2'] têm lucro diário idêntico em todos os dias (possível variante de controle com comissão = cashback por desenho, ou dado sintético/simulado). Testes de normalidade não se aplicam a esses grupos."
+    }
+  ],
+  "registro_planilha": {
+    "backend": "csv",
+    "location": "output/tracking_sheet.csv",
+    "error": null
+  }
+}

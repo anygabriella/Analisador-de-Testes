@@ -1,0 +1,33 @@
+# config.yaml — parâmetros do pipeline de análise de teste A/B
+# Nada de threshold hardcoded no código: tudo configurável aqui.
+
+statistics:
+  alpha: 0.05                 # nível de significância
+  normality_alpha: 0.05       # p-value abaixo do qual rejeitamos normalidade (Shapiro-Wilk)
+  min_days_recommended: 14    # abaixo disso, emitimos aviso de amostra pequena
+  min_effect_pct_recommended: 3.0  # diferença % mínima em lucro pra considerar "efeito relevante"
+
+decision:
+  # métrica usada por padrão quando o usuário/agente não especifica outra.
+  # opções válidas: "lucro" | "roi" | "compradores"
+  metrica_alvo_default: "lucro"
+  # limiares pra classificar o "impacto financeiro" da decisão em Alto/Médio/Baixo
+  impacto_alto_pct: 10.0
+  impacto_medio_pct: 3.0
+
+data_quality:
+  max_group_size_imbalance_pct: 20.0   # diferença % de dias entre grupos acima disso -> aviso
+  outlier_zscore_threshold: 3.0        # |z| acima disso é candidato a outlier
+  max_missing_days_pct: 10.0           # % de dias faltantes tolerado antes de virar aviso forte
+
+currency:
+  # formato brasileiro: ponto = separador de milhar, vírgula = decimal
+  symbol: "R$"
+
+sheets:
+  # Nome da aba/planilha de acompanhamento
+  worksheet_name: "Testes A/B - Growth"
+  # Caminho do CSV de fallback (usado se não houver credenciais do Google configuradas)
+  fallback_csv: "output/tracking_sheet.csv"
+  # Caminho do arquivo de credenciais de service account (opcional)
+  service_account_file: "service_account.json"
