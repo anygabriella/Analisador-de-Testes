@@ -64,11 +64,13 @@ acompanhamento (ver seção Google Sheets abaixo).
 
 ## Planilha de acompanhamento
 
-**Link (leitura pública):** `<COLOCAR_LINK_DO_GOOGLE_SHEETS_AQUI>`
+**Planilha (CSV, leitura pública ao subir pro GitHub):** [`output/tracking_sheet.csv`](./output/tracking_sheet.csv)
 
-Por padrão, sem nenhuma credencial configurada, o pipeline já grava em
-`output/tracking_sheet.csv` (o "mínimo aceito" do desafio) — isso funciona
-imediatamente, sem setup nenhum.
+Esta entrega usa o CSV local como planilha de acompanhamento — não configurei
+credenciais de Google Sheets neste ambiente, então o pipeline caiu
+automaticamente no fallback (comportamento esperado, ver `src/sheets_writer.py`).
+O CSV já satisfaz o "mínimo aceito" do desafio e fica público assim que o
+repositório for público no GitHub.
 
 ### Para gravar direto no Google Sheets (diferencial)
 1. Crie um projeto no [Google Cloud Console](https://console.cloud.google.com/),
